@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git credentialsId: 'github-credentials', branch: 'main', url: 'https://github.com/cmamith/simple-webapp.git'
+                git credentialsId: 'github-credentials', branch: 'main', url: 'https://github.com/cmamith/sample-webapp.git'
             }
         }
 
