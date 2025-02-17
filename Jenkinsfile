@@ -14,7 +14,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'sudo docker build -t amithdocker/sample-webapp:latest .'
+                sh 'docker build -t amithdocker/sample-webapp:latest .'
             }
         }
 
