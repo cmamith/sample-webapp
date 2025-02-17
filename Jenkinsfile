@@ -14,22 +14,20 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t amithdocker/sample-webapp:latest .'
+                sh 'docker build -t $DOCKER_IMAGE .'
             }
         }
 
-        stage('Push Docker Image') {
+        stage('Docker Login & Push') {
             steps {
-                withDockerRegistry([credentialsId: 'dockerhub-credentials', url: '']) {
-                    sh 'docker push $DOCKER_IMAGE'
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    sh '''
+                        export DOCKER_CONFIG=/tmp/.docker
+                        mkdir -p $DOCKER_CONFIG
+                        echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                        docker push $DOCKER_IMAGE
+                    '''
                 }
-            }
-        }
-
-        stage('Deploy (Optional)') {
-            steps {
-                echo 'Deploying container...'
-                // Add deployment logic here if needed (e.g., Kubernetes, Docker Run)
             }
         }
     }
