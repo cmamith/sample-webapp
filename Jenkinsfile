@@ -1,13 +1,8 @@
 pipeline {
-    agent {
-        docker {
-            image 'docker:latest'
-            args '--privileged -v /var/run/docker.sock:/var/run/docker.sock'
-        }
-    }
+    agent any
 
     environment {
-        DOCKER_IMAGE = 'amithdocker/sample-webapp:latest'
+        DOCKER_IMAGE = 'amithdocker/smple-webapp:latest'
     }
 
     stages {
