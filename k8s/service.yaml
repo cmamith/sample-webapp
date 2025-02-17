@@ -9,4 +9,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 3000
-  type: nodeport # Or ClusterIP if you don't want external access
+  type: NodePort # Or ClusterIP if you don't want external access
