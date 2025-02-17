@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'your-dockerhub-username/simple-webapp:latest'
+        DOCKER_IMAGE = 'amithdocker/sample-webapp:latest'
     }
 
     stages {
